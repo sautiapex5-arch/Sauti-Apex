@@ -1,6 +1,7 @@
-import { createFileRoute, Outlet, Link, redirect } from "@tanstack/react-router";
+import { createFileRoute, Outlet, Link } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { SplashScreen } from "@/components/site/SplashScreen";
+import { CookieConsent } from "@/components/site/CookieConsent";
 import { useAuth } from "@/lib/auth-context";
 
 export const Route = createFileRoute("/_authenticated")({
@@ -50,9 +51,10 @@ function AuthenticatedLayout() {
   }
 
   return (
-    <SiteLayout showFooter={false}>
+    <div className="min-h-screen-safe bg-background text-foreground">
       <SplashScreen />
       <Outlet />
-    </SiteLayout>
+      <CookieConsent />
+    </div>
   );
 }

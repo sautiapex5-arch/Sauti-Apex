@@ -81,15 +81,7 @@ export function AdminSidebar() {
   const role = roles.includes("admin") ? "Administrator" : (roles[0] ?? "Member");
 
   return (
-    <Sidebar
-      collapsible="icon"
-      style={
-        {
-          ...darkPalette,
-          "--sidebar-top": "var(--portal-nav-height)",
-        } as React.CSSProperties
-      }
-    >
+    <Sidebar collapsible="icon" style={darkPalette}>
       <SidebarHeader className="border-b border-sidebar-border">
         <Link to="/admin" className="flex items-center gap-3 px-2 py-3">
           <div className="grid place-items-center h-9 w-9 shrink-0 rounded-full bg-brand-gold text-brand-navy font-serif text-base font-bold">

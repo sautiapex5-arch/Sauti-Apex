@@ -55,15 +55,7 @@ export function ClientSidebar() {
   const initials = (user?.email ?? "C").slice(0, 1).toUpperCase();
 
   return (
-    <Sidebar
-      collapsible="icon"
-      style={
-        {
-          ...darkPalette,
-          "--sidebar-top": "var(--portal-nav-height)",
-        } as React.CSSProperties
-      }
-    >
+    <Sidebar collapsible="icon" style={darkPalette}>
       <SidebarHeader className="border-b border-sidebar-border">
         <Link to="/dashboard" className="flex items-center gap-3 px-2 py-3">
           <div className="grid place-items-center h-9 w-9 shrink-0 rounded-full bg-brand-gold text-brand-navy font-serif text-base font-bold">
