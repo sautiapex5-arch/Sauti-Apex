@@ -50,7 +50,7 @@ function AuthenticatedLayout() {
   }
 
   return (
-    <SiteLayout>
+    <SiteLayout showFooter={false}>
       <SplashScreen />
       <Outlet />
     </SiteLayout>

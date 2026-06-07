@@ -60,7 +60,7 @@ export function Nav() {
 
   return (
     <>
-      <header className="sticky top-0 z-50 border-b border-border/60 bg-background/85 backdrop-blur-xl pt-safe px-safe">
+      <header className="sticky top-0 z-50 border-b border-border/60 bg-background/95 backdrop-blur-xl pt-safe px-safe">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
           <Logo onClick={handleLogoClick} />
           <nav className={`${isAuthenticated ? "hidden" : "hidden md:flex"} items-center gap-1`}>
@@ -95,13 +95,6 @@ export function Nav() {
             {isAuthenticated ? (
               <>
                 <SignOutButton />
-                <button
-                  onClick={() => setOpen(!open)}
-                  aria-label="Menu"
-                  className="inline-flex items-center justify-center rounded-md border border-border p-2 text-brand-navy hover:bg-secondary transition"
-                >
-                  {open ? <X size={20} /> : <Menu size={20} />}
-                </button>
               </>
             ) : (
               <>
@@ -131,10 +124,8 @@ export function Nav() {
           </button>
         </div>
         {open && (
-          <div
-            className={`${isAuthenticated ? "" : "md:hidden"} border-t border-border bg-background`}
-          >
-            <div className="flex flex-col px-6 py-4 gap-1">
+          <div className="absolute left-0 right-0 top-full z-50 border-t border-border bg-background shadow-xl md:hidden">
+            <div className="mx-auto flex max-h-[calc(100dvh-var(--portal-nav-height))] max-w-7xl flex-col gap-1 overflow-y-auto px-6 py-4">
               {(showAdminMenu
                 ? [
                     { to: "/admin", label: "Admin Overview" },

@@ -44,10 +44,13 @@ function DashboardLayout() {
   const current = labels[slug] ?? "Overview";
 
   return (
-    <SidebarProvider defaultOpen={true}>
-      <div className="flex w-full min-h-[calc(100vh-73px)]">
+    <SidebarProvider
+      defaultOpen={true}
+      className="min-h-[calc(100svh-var(--portal-nav-height))]"
+    >
+      <div className="flex w-full min-h-[calc(100svh-var(--portal-nav-height))]">
         <ClientSidebar />
-        <div className="flex-1 flex flex-col min-w-0">
+        <div className="flex-1 flex flex-col min-w-0 bg-background">
           <div className="sticky top-0 z-30 flex items-center gap-3 border-b border-border px-4 py-2 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 pt-safe">
             <SidebarTrigger />
             <div className="flex items-center gap-2 text-xs font-semibold tracking-[0.2em] uppercase text-brand-gold-deep min-w-0">
@@ -62,9 +65,9 @@ function DashboardLayout() {
               )}
             </div>
           </div>
-          <main className="flex-1 px-6 py-8">
+          <main className="flex-1 px-4 py-6 sm:px-6 lg:px-8">
             <h1 className="font-serif text-3xl text-brand-navy">{current}</h1>
-            <div className="mt-6">
+            <div className="mt-6 min-w-0">
               <Outlet />
             </div>
           </main>

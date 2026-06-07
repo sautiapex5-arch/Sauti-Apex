@@ -2,14 +2,22 @@ import { Nav } from "./Nav";
 import { Footer } from "./Footer";
 import { CookieConsent } from "./CookieConsent";
 
-export function SiteLayout({ children }: { children: React.ReactNode }) {
+export function SiteLayout({
+  children,
+  showFooter = true,
+}: {
+  children: React.ReactNode;
+  showFooter?: boolean;
+}) {
   return (
     <div className="min-h-screen-safe flex flex-col bg-background text-foreground">
       <Nav />
       <main className="flex-1 px-safe">{children}</main>
-      <div className="pb-safe px-safe">
-        <Footer />
-      </div>
+      {showFooter && (
+        <div className="pb-safe px-safe">
+          <Footer />
+        </div>
+      )}
       <CookieConsent />
     </div>
   );
