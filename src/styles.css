@@ -1,0 +1,261 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+@import "@fontsource/playfair-display/400.css";
+@import "@fontsource/playfair-display/600.css";
+@import "@fontsource/playfair-display/700.css";
+@import "@fontsource/inter/300.css";
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+@import "@fontsource/inter/600.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Design system definition.
+ *
+ * The @theme inline block maps CSS custom properties to Tailwind utility
+ * classes (e.g. --color-primary -> bg-primary, text-primary).
+ *
+ * The :root and .dark blocks define the actual color values using oklch.
+ * All colors MUST use oklch format.
+ *
+ * To add a new semantic color:
+ * 1. Add the variable to :root (light value) and .dark (dark value)
+ * 2. Register it in @theme inline as --color-<name>: var(--<name>)
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  --radius: 0.5rem;
+  /* SautiApex brand: navy + gold */
+  --brand-navy: oklch(0.24 0.07 265);
+  --brand-navy-deep: oklch(0.17 0.06 265);
+  --brand-gold: oklch(0.78 0.14 85);
+  --brand-gold-deep: oklch(0.66 0.14 75);
+  --brand-cream: oklch(0.98 0.012 85);
+
+  --background: oklch(0.99 0.005 85);
+  --foreground: oklch(0.18 0.05 265);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.18 0.05 265);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.18 0.05 265);
+  --primary: var(--brand-navy);
+  --primary-foreground: oklch(0.98 0.012 85);
+  --secondary: oklch(0.96 0.015 85);
+  --secondary-foreground: var(--brand-navy);
+  --muted: oklch(0.95 0.012 85);
+  --muted-foreground: oklch(0.45 0.03 265);
+  --accent: var(--brand-gold);
+  --accent-foreground: var(--brand-navy);
+  --destructive: oklch(0.55 0.22 27);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(0.9 0.02 85);
+  --input: oklch(0.92 0.02 85);
+  --ring: var(--brand-gold);
+  --chart-1: var(--brand-navy);
+  --chart-2: var(--brand-gold);
+  --chart-3: oklch(0.5 0.08 265);
+  --chart-4: oklch(0.66 0.14 75);
+  --chart-5: oklch(0.35 0.06 265);
+  --sidebar: oklch(0.98 0.012 85);
+  --sidebar-foreground: var(--brand-navy);
+  --sidebar-primary: var(--brand-navy);
+  --sidebar-primary-foreground: oklch(0.98 0.012 85);
+  --sidebar-accent: var(--brand-gold);
+  --sidebar-accent-foreground: var(--brand-navy);
+  --sidebar-border: oklch(0.9 0.02 85);
+  --sidebar-ring: var(--brand-gold);
+  --font-serif: "Playfair Display", Georgia, serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+}
+
+.dark {
+  --background: oklch(0.13 0.04 265);
+  --foreground: oklch(0.98 0.012 85);
+  --card: oklch(0.18 0.05 265);
+  --card-foreground: oklch(0.98 0.012 85);
+  --popover: oklch(0.18 0.05 265);
+  --popover-foreground: oklch(0.98 0.012 85);
+  --primary: var(--brand-gold);
+  --primary-foreground: var(--brand-navy);
+  --secondary: oklch(0.22 0.05 265);
+  --secondary-foreground: oklch(0.98 0.012 85);
+  --muted: oklch(0.22 0.05 265);
+  --muted-foreground: oklch(0.7 0.03 85);
+  --accent: var(--brand-gold);
+  --accent-foreground: var(--brand-navy);
+  --border: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: var(--brand-gold);
+  --sidebar: var(--brand-navy-deep);
+  --sidebar-foreground: oklch(0.98 0.012 85);
+  --sidebar-primary: var(--brand-gold);
+  --sidebar-primary-foreground: var(--brand-navy);
+  --sidebar-accent: oklch(0.22 0.05 265);
+  --sidebar-accent-foreground: oklch(0.98 0.012 85);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: var(--brand-gold);
+}
+
+@theme inline {
+  --font-serif: "Playfair Display", Georgia, serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+  --color-brand-navy: var(--brand-navy);
+  --color-brand-navy-deep: var(--brand-navy-deep);
+  --color-brand-gold: var(--brand-gold);
+  --color-brand-gold-deep: var(--brand-gold-deep);
+  --color-brand-cream: var(--brand-cream);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  html {
+    font-family: var(--font-sans);
+  }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  .font-serif {
+    font-family: var(--font-serif);
+    letter-spacing: -0.02em;
+  }
+}
+
+@utility text-gold-gradient {
+  background: linear-gradient(135deg, oklch(0.82 0.14 85), oklch(0.62 0.14 75));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility bg-navy-gradient {
+  background: linear-gradient(135deg, oklch(0.22 0.07 265), oklch(0.14 0.06 265));
+}
+
+@utility bg-radial-glow {
+  background: radial-gradient(ellipse at top, oklch(0.28 0.08 265) 0%, oklch(0.13 0.05 265) 70%);
+}
+
+@layer utilities {
+  .chaos-s {
+    position: relative;
+    display: inline-block;
+    padding: 0 0.04em;
+    background: linear-gradient(135deg, oklch(0.82 0.14 85), oklch(0.62 0.14 75));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .chaos-s::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    height: 0.09em;
+    background: linear-gradient(90deg, oklch(0.82 0.14 85), oklch(0.62 0.14 75));
+    transform: translateY(-50%) rotate(-18deg);
+    border-radius: 999px;
+    pointer-events: none;
+  }
+  .watermark-sautiapex {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .watermark-sautiapex span {
+    font-family: var(--font-serif);
+    font-size: clamp(80px, 18vw, 220px);
+    font-weight: 700;
+    color: oklch(0.78 0.14 85 / 0.08);
+    transform: rotate(-30deg);
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+    text-transform: uppercase;
+  }
+}
+
+/* iOS / Android safe-area utilities (notch, Dynamic Island, status bar, home indicator) */
+@layer utilities {
+  .pt-safe {
+    padding-top: env(safe-area-inset-top);
+  }
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  .pl-safe {
+    padding-left: env(safe-area-inset-left);
+  }
+  .pr-safe {
+    padding-right: env(safe-area-inset-right);
+  }
+  .px-safe {
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+  .min-h-screen-safe {
+    min-height: 100dvh;
+  }
+}
+
+html,
+body {
+  overscroll-behavior-y: none;
+}

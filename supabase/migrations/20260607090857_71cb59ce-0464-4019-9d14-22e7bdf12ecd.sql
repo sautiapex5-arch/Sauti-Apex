@@ -1,0 +1,1 @@
+ALTER TABLE public.client_appraisals ADD COLUMN IF NOT EXISTS project_name text;
