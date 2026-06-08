@@ -1,4 +1,6 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { useEffect } from "react";
+import { supabase } from "@/integrations/supabase/client";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import {
   ArrowRight,
@@ -89,6 +91,42 @@ const phases = [
 ];
 
 function Index() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("auth") !== "oauth") return;
+
+    let settled = false;
+    const finish = (to: "/dashboard" | "/login") => {
+      if (settled) return;
+      settled = true;
+      window.history.replaceState(null, "", "/");
+      navigate({ to });
+    };
+
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      if (session?.user) finish("/dashboard");
+    });
+
+    const checkSession = window.setTimeout(async () => {
+      const { data } = await supabase.auth.getSession();
+      if (data.session?.user) finish("/dashboard");
+    }, 500);
+
+    const fallback = window.setTimeout(() => finish("/login"), 5000);
+
+    return () => {
+      subscription.unsubscribe();
+      window.clearTimeout(checkSession);
+      window.clearTimeout(fallback);
+    };
+  }, [navigate]);
+
   return (
     <SiteLayout>
       {/* HERO */}
