@@ -23,16 +23,10 @@ export function Nav() {
   const [secretOpen, setSecretOpen] = useState(false);
   const logoTapCount = useRef(0);
   const logoTapTimer = useRef<number | undefined>(undefined);
-  const { isAuthenticated, isAdmin, hasAdminRole, viewMode, setViewMode } = useAuth();
+  const { isAuthenticated, hasAdminRole, viewMode, setViewMode } = useAuth();
   const navigate = useNavigate();
 
-  // Admins in admin view get a compact grouped menu instead of the public link bar.
-  const showAdminMenu = isAdmin;
-  const links = showAdminMenu
-    ? []
-    : isAuthenticated
-      ? [publicLinks[0], { to: "/dashboard", label: "Dashboard" }, ...publicLinks.slice(1)]
-      : publicLinks;
+  const links = publicLinks;
 
   const toggleView = () => {
     const next = viewMode === "admin" ? "client" : "admin";
@@ -63,7 +57,7 @@ export function Nav() {
       <header className="sticky top-0 z-50 border-b border-border/60 bg-background/95 backdrop-blur-xl pt-safe px-safe">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
           <Logo onClick={handleLogoClick} />
-          <nav className={`${isAuthenticated ? "hidden" : "hidden md:flex"} items-center gap-1`}>
+          <nav className="hidden items-center gap-1 md:flex">
             {links.map((l) => (
               <Link
                 key={l.to}
@@ -126,13 +120,7 @@ export function Nav() {
         {open && (
           <div className="absolute left-0 right-0 top-full z-50 border-t border-border bg-background shadow-xl md:hidden">
             <div className="mx-auto flex max-h-[calc(100dvh-var(--portal-nav-height))] max-w-7xl flex-col gap-1 overflow-y-auto px-6 py-4">
-              {(showAdminMenu
-                ? [
-                    { to: "/admin", label: "Admin Overview" },
-                    { to: "/dashboard", label: "Client view" },
-                  ]
-                : links
-              ).map((l) => (
+              {links.map((l) => (
                 <Link
                   key={l.to}
                   to={l.to}
@@ -142,40 +130,6 @@ export function Nav() {
                   {l.label}
                 </Link>
               ))}
-              {showAdminMenu && (
-                <div className="mt-2 grid grid-cols-2 gap-1">
-                  {[
-                    ["/admin/leads", "Leads"],
-                    ["/admin/clients", "Clients"],
-                    ["/admin/projects", "Projects"],
-                    ["/admin/proposals", "Proposals"],
-                    ["/admin/contracts", "Contracts"],
-                    ["/admin/invoices", "Invoices"],
-                    ["/admin/expenses", "Expenses"],
-                    ["/admin/retainers", "Retainers"],
-                    ["/admin/tenders", "Tenders"],
-                    ["/admin/investments", "Investments"],
-                    ["/admin/compliance", "Compliance"],
-                    ["/admin/packages", "Packages"],
-                    ["/admin/team-management", "Team"],
-                    ["/admin/consultations", "Consultations"],
-                    ["/admin/documents", "Documents"],
-                    ["/admin/reports", "Reports"],
-                    ["/admin/ai-insights", "AI Insights"],
-                    ["/admin/notifications", "Notifications"],
-                    ["/admin/users", "Users & Roles"],
-                  ].map(([to, label]) => (
-                    <Link
-                      key={to}
-                      to={to}
-                      onClick={() => setOpen(false)}
-                      className="py-1.5 text-xs text-foreground/70"
-                    >
-                      {label}
-                    </Link>
-                  ))}
-                </div>
-              )}
               {isAuthenticated ? (
                 <div className="mt-2">
                   <SignOutButton
