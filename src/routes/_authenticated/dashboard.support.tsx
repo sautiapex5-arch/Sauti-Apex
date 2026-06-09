@@ -21,12 +21,12 @@ function SupportPage() {
           <div className="text-xs text-muted-foreground break-all">info@sautiapex.co.ke</div>
         </a>
         <a
-          href="tel:+254000000000"
+          href="tel:+254726680824"
           className="rounded-xl border border-border bg-card p-4 hover:border-brand-gold/50 transition"
         >
           <Phone className="text-brand-gold-deep" size={18} />
           <div className="mt-2 font-serif text-lg text-brand-navy">Phone</div>
-          <div className="text-xs text-muted-foreground">+254 000 000 000</div>
+          <div className="text-xs text-muted-foreground">0726680824</div>
         </a>
         <Link
           to="/contact"

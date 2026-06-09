@@ -96,7 +96,7 @@ export function Footer() {
             </li>
             <li className="flex items-start gap-2">
               <Phone size={15} className="mt-0.5 text-brand-gold" />
-              <span>+254 700 000 000</span>
+              <span>0726680824</span>
             </li>
           </ul>
         </div>

@@ -38,7 +38,7 @@ function Contact() {
             </li>
             <li className="flex items-start gap-3">
               <Phone size={18} className="mt-1 text-brand-gold-deep" />
-              <span className="text-sm">+254 700 000 000</span>
+              <span className="text-sm">0726680824</span>
             </li>
           </ul>
           <div className="rounded-xl bg-brand-cream border border-brand-gold/30 p-6">
